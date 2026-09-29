@@ -1,0 +1,158 @@
+@font-face {
+  font-family: 'MinecraftCraftron';
+  src: url('Minecraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --font-magic: 'VT323', monospace; /* Fuente pixelada */
+  --font-btn: 'Nunito', sans-serif;
+  --phase-duration: 5s;
+}
+
+body, html {
+  margin: 0; padding: 0; height: 100%; overflow: hidden;
+  background-color: #000; 
+}
+
+/* =========================================
+   CIELOS SÓLIDOS (Sin gradientes suaves)
+   ========================================= */
+.sky {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: 0; transition: opacity var(--phase-duration) steps(5); /* Transición ligeramente entrecortada */
+}
+.sky.active { opacity: 1; }
+
+#sky-dia       { background: #78a7ff; }
+#sky-atardecer { background: #ff7c6b; }
+#sky-noche     { background: #0c1427; }
+#sky-amanecer  { background: #ffa477; }
+
+/* --- SOL Y LUNA CUADRADOS --- */
+#celestial-body {
+  position: absolute; 
+  right: 15%; 
+  width: 50px; height: 50px; /* Ya no tiene border-radius */
+  z-index: 1; pointer-events: none;
+  transition: top var(--phase-duration) linear, background var(--phase-duration) steps(3);
+}
+
+body.fase-amanecer #celestial-body { top: 65%; background: #ffcc33; }
+body.fase-dia #celestial-body { top: 15%; background: #ffe600; box-shadow: 0 0 0 10px rgba(255, 230, 0, 0.3); }
+body.fase-atardecer #celestial-body { top: 65%; background: #ff5500; }
+body.fase-noche #celestial-body { top: 15%; background: #ffffff; box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.15); }
+
+/* --- SUELO DE MICELIO (Mycelium & Dirt) --- */
+#forest-floor {
+  position: absolute; bottom: 0; width: 100%; height: 100px; z-index: 5; pointer-events: none;
+  /* Top 15px es Micelio morado/gris, el resto es tierra café */
+  background: linear-gradient(to bottom, #726275 0%, #726275 15px, #4d3326 15px, #4d3326 100%);
+  border-top: 4px solid #57485a; /* Borde superior del bloque */
+}
+
+/* --- CAPAS DEL BOSQUE --- */
+.forest-layer { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+#forest-back { z-index: 3; filter: brightness(0.4); } /* Capa trasera oscura */
+#forest-mid { z-index: 4; filter: brightness(0.8) drop-shadow(0 5px 0px rgba(0,0,0,0.5)); }
+
+.mc-tree, .mc-mushroom {
+  position: absolute; bottom: 95px; /* Plantados justo encima de la tierra */
+  transform-origin: bottom center;
+}
+
+/* --- ESPORAS FÚNGICAS FLOTANTES --- */
+#fireflies-container { position: absolute; inset: 0; z-index: 22; overflow: hidden; pointer-events: none;}
+.spore {
+  position: absolute; width: 6px; height: 6px;
+  background: #a98cb8; /* Color de espora de micelio */
+  animation: floatSpore linear infinite;
+}
+@keyframes floatSpore {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+
+/* --- UI Y TEXTO ESTILO MINECRAFT --- */
+.profile-container {
+  position: relative; z-index: 30; display: flex; flex-direction: column; align-items: center;
+  height: 100%; padding-top: 5vh; overflow-y: auto; scrollbar-width: none;
+}
+.profile-container::-webkit-scrollbar { display: none; }
+
+.profile-pic { width: 100px; height: 100px; border: 4px solid #fff; margin-bottom: 10px; border-radius: 0; /* Foto cuadrada! */ }
+.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+
+.name { 
+  font-family: 'MinecraftCraftron', sans-serif !important; 
+  font-size: 3.2rem; 
+  color: #ffffff; 
+  margin: 10px auto; 
+  line-height: 1; 
+  text-align: center;
+  
+  /* Separación suave entre letras */
+  letter-spacing: 3px; 
+  
+  /* Estilo nametag de Minecraft */
+  background-color: rgba(0, 0, 0, 0.4); 
+  padding: 8px 18px;
+  display: inline-block; 
+  text-shadow: 3px 3px 0px #3f3f3f; 
+  -webkit-text-stroke: 0; 
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+  .name {
+    font-size: 2.2rem;
+    padding: 6px 12px;
+  }
+}
+
+.tagline { font-family: var(--font-btn); font-size: 1.2rem; color: #ddd; margin-top: 10px; margin-bottom: 25px; }
+
+/* Botones simplificados */
+.links { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 14px; 
+  width: 90%; 
+  max-width: 330px;
+  padding-bottom: 120px;
+ }
+.stream-btn { 
+  display: flex; 
+  align-items: center; 
+  background: #fff; 
+  padding: 12px 20px; 
+  text-decoration: none; 
+  border: 3px solid #000; 
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.8); 
+  transition: transform 0.1s; 
+}
+.stream-btn:active { 
+  transform: translate(4px, 4px); 
+  box-shadow: 0px 0px 0px rgba(0,0,0,0.8); 
+}
+.icon { 
+  font-size: 1.5rem; 
+  margin-right: 15px; 
+  width: 30px; 
+  text-align: center; 
+}
+.text { 
+  font-family: var(--font-btn); 
+  font-weight: 900; 
+  font-size: 1.1rem; 
+  flex-grow: 1; 
+  text-align: center; 
+  color: #000;
+}

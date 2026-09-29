@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoyMuscaria</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <!-- Enlace para cargar los íconos de Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="fase-dia">
+  
+  <!-- Capas del cielo (Ciclo de tiempo) -->
+  <div id="sky-dia" class="sky active"></div>
+  <div id="sky-atardecer" class="sky"></div>
+  <div id="sky-noche" class="sky"></div>
+  <div id="sky-amanecer" class="sky"></div>
+
+  <!-- Atmósfera general -->
+  <div class="sky-glow"></div>
+  <div id="celestial-body"></div>
+
+  <!-- Capas de bosque animadas -->
+  <div id="forest-back" class="forest-layer"></div>
+  <div id="forest-mid" class="forest-layer"></div>
+  
+  <!-- Suelo y vegetación -->
+  <div id="forest-floor"></div>
+
+  <!-- Champiñones gigantes de las esquinas -->
+  <div class="giant-mushroom left"></div>
+  <div class="giant-mushroom right"></div>
+
+  <!-- Bichos -->
+  <div id="flies-container"></div>
+  <div id="fireflies-container"></div> <!-- Contenedor de luciérnagas -->
+
+  <!-- UI y Botones -->
+  <main class="profile-container">
+    <div class="profile-pic">
+      <img src="muscariamosca_alejo.png" alt="Muscaria">
+    </div>
+    <h1 class="name">SoyMuscaria</h1>
+    
+    <div class="links">
+      <a href="https://www.youtube.com/@SoyMuscaria" class="stream-btn"><i class="fa-brands fa-youtube"></i><span class="text text-yt">Muscaria</span></a>
+      <a href="https://www.twitch.tv/soymuscaria" class="stream-btn"><i class="fa-brands fa-twitch"></i><span class="text text-tw">SoyMuscaria</span></a>
+      <a href="https://kick.com/soymuscaria" class="stream-btn"><i class="fa-brands fa-kickstarter-k"></i><span class="text text-kick">SoyMuscaria</span></a>
+      <a href="https://www.tiktok.com/@soymuscaria?_r=1&_t=ZS-9A6Fvc63ZcA" class="stream-btn"><i class="fa-brands fa-tiktok"></i><span class="text text-tk">SoyMuscaria</span></a>
+      <a href="https://www.instagram.com/soymuscaria?stkn=NGF3dGE1M3hvNjhz" class="stream-btn"><i class="fa-brands fa-instagram"></i><span class="text text-ig">SoyMuscaria</span></a>
+      <a href="https://discord.gg/KjwXsCZEEt" class="stream-btn"><i class="fa-brands fa-discord"></i><span class="text text-discord">Cotorreo del Buenardo</span></a>
+    </div>
+  </main>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
